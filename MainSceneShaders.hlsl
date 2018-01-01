@@ -33,8 +33,8 @@ float4 PSMainTextured(VS_MAINTEXTURED_OUTPUT input) : SV_TARGET
 {
 	float3 uvw = float3(input.uv , gTextureNumber);
 	//float4 cColor = gUItxTextures.Sample(gUISamplerState, uvw);
-	float4 cColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
-	cColor = cColor * gTimeElapsed;
+	float4 cColor = float4(0.0f, 0.0f, 1.0f, 1.0f);
+	cColor = cColor * 1.0f;
 
 	return(cColor);
 }

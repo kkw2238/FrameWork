@@ -63,9 +63,6 @@
     <ClInclude Include="Resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="LabProject08-9-1.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -93,12 +90,12 @@
     <ClInclude Include="Shader.h">
       <Filter>Shaders</Filter>
     </ClInclude>
+    <ClInclude Include="SilentEngine.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="LabProject08-9-1.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -127,6 +124,9 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="SilentEngine.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

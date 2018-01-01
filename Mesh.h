@@ -203,6 +203,6 @@ public:
 class CUIMeshTextured : public CMeshDiffused
 {
 public :
-	CUIMeshTextured(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, XMFLOAT3& xmf3StartPos, XMFLOAT3& xmf3EndPos, float fTexutreNum, float fsize = 1.0f);
+	CUIMeshTextured(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, XMFLOAT3& xmf3StartPos, XMFLOAT3& xmf3EndPos, float fTexutreNum, float fsize);
 	virtual ~CUIMeshTextured();
 };

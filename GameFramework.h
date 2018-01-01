@@ -103,8 +103,9 @@ private:
 
 	_TCHAR							m_pszFrameRate[50];
 
-	int								m_iMaxScene;
-	int								m_iNowScene;
+	int								m_nMaxScene;
+	int								m_nNowScene;
+	bool							m_bEndScene = false;
 
 // 카메라 관련 변수
 	bool							CameraCorrection;

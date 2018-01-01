@@ -201,11 +201,24 @@ MainScene::~MainScene()
 
 bool MainScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
+	
 	return false;
 }
 
 bool MainScene::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
+	switch (nMessageID)
+	{
+	case WM_KEYUP:
+		switch (wParam)
+		{
+		case VK_RETURN:
+			return true;
+		}
+		break;
+	default:
+		break;
+	}
 	return false;
 }
 
@@ -324,6 +337,7 @@ void MainScene::Render(ID3D12GraphicsCommandList * pd3dCommandList, CCamera * pC
 
 void MainScene::ReleaseUploadBuffers()
 {
+	//for (int i = 0; i < m_nShaders; i++) m_ppShaders[i]->ReleaseUploadBuffers();
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -604,7 +618,6 @@ void GameScene::ReleaseShaderVariables()
 
 bool GameScene::ProcessInput(UCHAR * pKeysBuffer)
 {
-
 	return false;
 }
 

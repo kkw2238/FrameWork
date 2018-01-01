@@ -901,12 +901,13 @@ void CStaticUITexturedShader::ReleaseObjects()
 {
 	if (m_ppMeshes)
 	{
-		for (int j = 0; j < m_nMeshes; j++) if (m_ppMeshes[j]) delete m_ppMeshes[j];
-		delete[] m_ppMeshes;
+		for (int j = 0; j < m_nMeshes; j++) 
+			if (m_ppMeshes[j]) 
+				delete m_ppMeshes[j];
 	}
 
 #ifdef _WITH_BATCH_MATERIAL
-	if (m_pMaterial) delete m_pMaterial;
+	//if (m_pMaterial) delete m_pMaterial;
 #endif
 }
 
@@ -1272,7 +1273,7 @@ void CMainTextureShader::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsC
 	pCubeMaterial->SetReflection(1);
 #endif
 	m_ppMeshes = new CMesh*[m_nMeshes];
-	CUIMeshTextured* pStaticMesh = new CUIMeshTextured(pd3dDevice, pd3dCommandList, XMFLOAT3(0.0f, FRAME_BUFFER_HEIGHT, 1.0f), XMFLOAT3(FRAME_BUFFER_WIDTH, 0.0f, 1.0f), 0.0f);
+	CUIMeshTextured* pStaticMesh = new CUIMeshTextured(pd3dDevice, pd3dCommandList, XMFLOAT3(0.0f, FRAME_BUFFER_HEIGHT, 1.0f), XMFLOAT3(FRAME_BUFFER_WIDTH, 0.0f, 1.0f), 0.0f, 1.0f);
 #ifndef _WITH_BATCH_MATERIAL
 	pRotatingObject->SetMaterial(pCubeMaterial);
 #endif

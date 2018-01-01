@@ -12,8 +12,8 @@ CGameFramework::CGameFramework()
 
 	m_fMouseSensitive = 4.5f; // Default ¸¶¿ì½º ¹Î°¨µµ
 	m_nRtvDescriptorIncrementSize = 0;
-	m_iMaxScene = 3;
-	m_iNowScene = 0;
+	m_nMaxScene = 3;
+	m_nNowScene = 1;
 
 	m_hFenceEvent = NULL;
 	for (int i = 0; i < m_nSwapChainBuffers; i++) m_nFenceValues[i] = 0;
@@ -328,7 +328,7 @@ void CGameFramework::OnResizeBackBuffers()
 
 void CGameFramework::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
-	if (m_ppScene[m_iNowScene]) m_ppScene[m_iNowScene]->OnProcessingMouseMessage(hWnd, nMessageID, wParam, lParam);
+	if (m_ppScene[m_nNowScene]) m_ppScene[m_nNowScene]->OnProcessingMouseMessage(hWnd, nMessageID, wParam, lParam);
 	switch (nMessageID)
 	{
 		case WM_LBUTTONDOWN:
@@ -352,8 +352,10 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 	float fMinMouseSensitive = 2.0f;
 	float fMaxMouseSensitive = 20.0f;
 	float fMouseSensitiveOffset = 1.0f;
-
-	if (m_ppScene[m_iNowScene]) m_ppScene[m_iNowScene]->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);
+	
+	if (m_ppScene[m_nNowScene]) {
+		m_bEndScene = m_ppScene[m_nNowScene]->OnProcessingKeyboardMessage(hWnd, nMessageID, wParam, lParam);	// 
+	}
 	switch (nMessageID)
 	{
 		case WM_KEYUP:
@@ -363,6 +365,8 @@ void CGameFramework::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPA
 					::PostQuitMessage(0);
 					break;
 				case VK_RETURN:
+					WaitForGpuComplete();
+					m_nNowScene = 1;
 					break;
 				case VK_F1:
 				case VK_F2:
@@ -451,7 +455,7 @@ void CGameFramework::OnDestroy()
 #if defined(_DEBUG)
 	//if (m_pd3dDebugController ) m_pd3dDebugController->Release();
 #endif
-	
+
 	if (m_pd3dDepthStencilBuffer ) m_pd3dDepthStencilBuffer->Release();
 	if (m_pd3dDsvDescriptorHeap ) m_pd3dDsvDescriptorHeap->Release();
 	
@@ -490,7 +494,7 @@ void CGameFramework::OnDestroy()
 void CGameFramework::BuildObjects()
 {
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);
-	m_ppScene = new CScene*[m_iMaxScene];
+	m_ppScene = new CScene*[m_nMaxScene];
 
 	MainScene* pMainScene = new MainScene();
 	pMainScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
@@ -502,25 +506,31 @@ void CGameFramework::BuildObjects()
 	m_pPlayer = pGameScene->m_pPlayer;
 	m_ppScene[1] = pGameScene;
 
+	m_ppScene[2] = NULL;
+
 	ID3D12CommandList *ppd3dCommandLists[] = { m_pd3dCommandList  };
 	m_pd3dCommandList->Close();
 	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
 	WaitForGpuComplete();
 
-	if (m_ppScene[m_iNowScene]) m_ppScene[m_iNowScene]->ReleaseUploadBuffers();
-
+	for(int i = 0; i < m_nMaxScene; ++i)
+		if (m_ppScene[i]) 
+			m_ppScene[i]->ReleaseUploadBuffers();
+	
 	m_GameTimer.Reset();
 }
 
 void CGameFramework::ReleaseObjects()
 {
+	for (int i = 0; i < m_nMaxScene; ++i)
+		m_ppScene[i]->ReleaseObjects();
 }
 
 void CGameFramework::ProcessInput()
 {
 	static UCHAR pKeysBuffer[256];
 	bool bProcessedByScene = false;
-	if (GetKeyboardState(pKeysBuffer) && m_ppScene[m_iNowScene]) bProcessedByScene = m_ppScene[m_iNowScene]->ProcessInput(pKeysBuffer);
+	if (GetKeyboardState(pKeysBuffer) && m_ppScene[m_nNowScene]) bProcessedByScene = m_ppScene[m_nNowScene]->ProcessInput(pKeysBuffer);
 	if (!bProcessedByScene)
 	{
 		DWORD dwDirection = 0;
@@ -568,7 +578,8 @@ void CGameFramework::ProcessInput()
 
 void CGameFramework::AnimateObjects()
 {
-	if (m_ppScene[m_iNowScene]) m_ppScene[m_iNowScene]->AnimateObjects(m_GameTimer.GetTimeElapsed());
+	if (m_ppScene[m_nNowScene]) 
+		m_ppScene[m_nNowScene]->AnimateObjects(m_GameTimer.GetTimeElapsed());
 }
 
 void CGameFramework::WaitForGpuComplete()
@@ -604,24 +615,41 @@ void CGameFramework::FrameAdvance()
 {    
 	m_GameTimer.Tick(0.0f);
 	ProcessInput();
-
     AnimateObjects();
 
 	HRESULT hResult = m_pd3dCommandAllocator->Reset();
 	hResult = m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);
 
-	::SynchronizeResourceTransition(m_pd3dCommandList , m_ppd3dRenderTargetBuffers[0] , D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
-	::SynchronizeResourceTransition(m_pd3dCommandList , m_ppd3dRenderTargetBuffers[1] , D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
-
-	float pfClearColor[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
-	m_pd3dCommandList->ClearRenderTargetView(m_pd3dRtvRenderTargetBufferCPUHandles[0], pfClearColor, 0, NULL);
-	m_pd3dCommandList->ClearRenderTargetView(m_pd3dRtvRenderTargetBufferCPUHandles[1], pfClearColor, 0, NULL);
-	m_pd3dCommandList->ClearDepthStencilView(m_d3dDsvDepthStencilBufferCPUHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, NULL);
-	//m_pd3dCommandList->OMSetRenderTargets(2, m_pd3dRtvRenderTargetBufferCPUHandles, TRUE, &m_d3dDsvDepthStencilBufferCPUHandle
-	m_pd3dCommandList->OMSetRenderTargets(2, &m_pd3dRtvSwapChainBackBufferCPUHandles[m_nSwapChainBufferIndex], TRUE, &m_d3dDsvDepthStencilBufferCPUHandle);
+	if (m_bEndScene) {
+		WaitForGpuComplete();
+		m_nNowScene = 1;
+		m_bEndScene = false;
+	}
 	
+	float pfClearColor[4] = { 1.0f, 0.0f, 1.0f, 1.0f };
 
-	m_ppScene[m_iNowScene]->Render(m_pd3dCommandList , m_pCamera );
+	switch (m_nNowScene)
+	{
+	case MAINSCENE:
+		// ·»´õ Å¸°ÙÀ¸·Î ¼³Á¤
+		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dSwapChainBackBuffers[m_nSwapChainBufferIndex], D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		m_pd3dCommandList->OMSetRenderTargets(1, &m_pd3dRtvSwapChainBackBufferCPUHandles[m_nSwapChainBufferIndex], TRUE, &m_d3dDsvDepthStencilBufferCPUHandle);
+		break;
+	case GAMESCENE:
+		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dRenderTargetBuffers[0], D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
+		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dRenderTargetBuffers[1], D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_RESOURCE_STATE_RENDER_TARGET);
+
+		m_pd3dCommandList->ClearRenderTargetView(m_pd3dRtvRenderTargetBufferCPUHandles[0], pfClearColor, 0, NULL);
+		m_pd3dCommandList->ClearRenderTargetView(m_pd3dRtvRenderTargetBufferCPUHandles[1], pfClearColor, 0, NULL);
+		m_pd3dCommandList->ClearDepthStencilView(m_d3dDsvDepthStencilBufferCPUHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, NULL);
+
+		m_pd3dCommandList->OMSetRenderTargets(2, m_pd3dRtvRenderTargetBufferCPUHandles, TRUE, &m_d3dDsvDepthStencilBufferCPUHandle);
+		break;
+	case SHOPSCENE:
+		break;
+	}
+	
+	m_ppScene[m_nNowScene]->Render(m_pd3dCommandList , m_pCamera );
 
 	ID3D12CommandList *ppd3dCommandLists[] = { m_pd3dCommandList  };
 
@@ -629,15 +657,17 @@ void CGameFramework::FrameAdvance()
 	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
 	WaitForGpuComplete();
 
-//	D3D12_CPU_DESCRIPTOR_HANDLE pd3dRtvRenderTargetBufferCPUHandles[m_nRenderTargetBuffers] = { NULL, NULL };
+	//D3D12_CPU_DESCRIPTOR_HANDLE pd3dRtvRenderTargetBufferCPUHandles[m_nRenderTargetBuffers] = { NULL, NULL };
 
 	hResult = m_pd3dCommandAllocator->Reset();
 	hResult = m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);
 
-	if (m_iNowScene == 1) {
+	if (m_nNowScene == GAMESCENE) {
 		// ·»´õ Å¸°Ù ¹öÆÛ¸¦ ¸®¼Ò½º·Î ¸¸µç´Ù.
 		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dRenderTargetBuffers[0], D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
 		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dRenderTargetBuffers[1], D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
+
+		// ·»´õ Å¸°ÙÀ¸·Î ¼³Á¤
 		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dSwapChainBackBuffers[m_nSwapChainBufferIndex], D3D12_RESOURCE_STATE_PRESENT, D3D12_RESOURCE_STATE_RENDER_TARGET);
 
 		m_pd3dCommandList->ClearDepthStencilView(m_d3dDsvDepthStencilBufferCPUHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, NULL);
@@ -649,14 +679,14 @@ void CGameFramework::FrameAdvance()
 #ifdef _WITH_PLAYER_TOP
 		m_pd3dCommandList->ClearDepthStencilView(m_d3dDsvDepthStencilBufferCPUHandle, D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, NULL);
 #endif
+		m_pPlayer->Render(m_pd3dCommandList , m_pCamera );
 	}
-	//m_pPlayer->Render(m_pd3dCommandList , m_pCamera );
-
-	::SynchronizeResourceTransition(m_pd3dCommandList , m_ppd3dSwapChainBackBuffers[m_nSwapChainBufferIndex] , D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
 
 	hResult = m_pd3dCommandList->Close();
 	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
 	WaitForGpuComplete();
+
+	
 
 #ifdef _WITH_PRESENT_PARAMETERS
 	DXGI_PRESENT_PARAMETERS dxgiPresentParameters;
@@ -678,5 +708,7 @@ void CGameFramework::FrameAdvance()
 
 	m_GameTimer.GetFrameRate(m_pszFrameRate + 12, 37);
 	::SetWindowText(m_hWnd, m_pszFrameRate);
+
+	
 }
 
