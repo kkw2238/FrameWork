@@ -499,10 +499,14 @@ void CGameFramework::BuildObjects()
 {
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);
 
-	m_pScene = new CScene();
-	m_pScene->BuildObjects(m_pd3dDevice , m_pd3dCommandList );
-	m_pPlayer =new CMyPlayer(m_pd3dDevice , m_pd3dCommandList , m_pScene ->GetGraphicsRootSignature(), (void*)NULL, 1);
-	m_pScene->m_pPlayer = m_pPlayer ;
+	GameScene* pGameScene;
+	pGameScene = new GameScene();
+	pGameScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
+
+	m_pPlayer =new CMyPlayer(m_pd3dDevice , m_pd3dCommandList , pGameScene->GetGraphicsRootSignature(), (void*)NULL, 1);
+	pGameScene->m_pPlayer = m_pPlayer;
+	
+	m_pScene = pGameScene;
 
 	m_pCamera = m_pPlayer->GetCamera();
 
