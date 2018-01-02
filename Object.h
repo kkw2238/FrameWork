@@ -22,6 +22,12 @@
 
 class CShader;
 
+struct CB_MAINTEXTURED_INFO
+{
+	UINT							m_nTexturedNum;
+	float							m_fTimeElapsed;
+};
+
 struct CB_GAMEOBJECT_INFO
 {
 	XMFLOAT4X4						m_xmf4x4World;
