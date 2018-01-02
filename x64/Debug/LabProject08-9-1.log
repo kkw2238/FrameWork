@@ -1,2 +1,14 @@
-﻿  GameFramework.cpp
+﻿  stdafx.cpp
+d:\school\3학년 2학기\3dgameprograming2\labproject\labproject08-9-1\stdafx.h(257): warning C4101: 'xmf3Result' :참조되지 않은 지역 변수입니다.
+  Timer.cpp
+  Shader.cpp
+  Scene.cpp
+  Player.cpp
+  Object.cpp
+  Mesh.cpp
+  LabProject08-9-1.cpp
+  GameFramework.cpp
+  DDSTextureLoader12.cpp
+  Camera.cpp
+  코드를 생성하고 있습니다...
   LabProject08-9-1.vcxproj -> D:\School\3학년 2학기\3DGamePrograming2\LabProject\LabProject08-9-1\x64\Debug\LabProject08-9-1.exe
