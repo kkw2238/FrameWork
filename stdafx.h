@@ -105,7 +105,6 @@ extern void SynchronizeResourceTransition(ID3D12GraphicsCommandList *pd3dCommand
 #define EPSILON						1.0e-10f
 // 특정 회전 축으로 공전 시킬 때 사용할 회전 축
 typedef enum { RotX, RotY, RotZ } RotateAxis;
-typedef enum { MAINSCENE, GAMESCENE, SHOPSCENE } SceneNumber;
 
 inline bool IsZero(float fValue) { return((fabsf(fValue) < EPSILON)); }
 inline bool IsEqual(float fA, float fB) { return(::IsZero(fA - fB)); }
@@ -255,6 +254,7 @@ namespace Vector3
 
 	inline float AngleAxisZero(XMFLOAT3& xmf3Vector1, XMFLOAT3& xmf3Vector2, const RotateAxis eAxis)
 	{
+		XMFLOAT3 xmf3Result;
 		XMFLOAT3 xmf3Vector1tmp = xmf3Vector1;
 		XMFLOAT3 xmf3Vector2tmp = xmf3Vector2;
 
