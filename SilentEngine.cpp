@@ -2,7 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "LabProject08-9-1.h"
+#include "SilentEngine.h"
 #include "GameFramework.h"
 
 #define MAX_LOADSTRING 100
@@ -27,12 +27,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 	HACCEL hAccelTable;
 
 	::LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	::LoadString(hInstance, IDC_LABPROJECT0891, szWindowClass, MAX_LOADSTRING);
+	::LoadString(hInstance, IDC_SILENTENGINE, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
 
 	if (!InitInstance(hInstance, nCmdShow)) return(FALSE);
 
-	hAccelTable = ::LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_LABPROJECT0891));
+	hAccelTable = ::LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_SILENTENGINE));
 
 	while (1)
 	{
@@ -66,7 +66,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
 	wcex.hInstance = hInstance;
-	wcex.hIcon = ::LoadIcon(hInstance, MAKEINTRESOURCE(IDI_LABPROJECT0891));
+	wcex.hIcon = ::LoadIcon(hInstance, MAKEINTRESOURCE(IDI_SILENTENGINE));
 	wcex.hCursor = ::LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = NULL;//MAKEINTRESOURCE(IDC_LABPROJECT0891);

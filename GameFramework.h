@@ -86,9 +86,9 @@ private:
 
 	CGameTimer							m_GameTimer;
 
-	CScene*								m_pScene;
-	CPlayer*							m_pPlayer;
+	CScene**							m_ppScene;
 	CCamera*							m_pCamera;
+	CPlayer*							m_pPlayer;
 
 	static const UINT					m_nRenderTargetBuffers = 2;	// 랜더 타겟 버퍼( 2개인 이유 : 1개는 일단 그리고 엣지를 찾는 용, 1개는 완성 본 )
 	ID3D12Resource*						m_ppd3dRenderTargetBuffers[m_nRenderTargetBuffers];
@@ -98,13 +98,14 @@ private:
 //	D3D12_GPU_DESCRIPTOR_HANDLE			m_pd3dSrvGPUHandles[m_nRenderTargetBuffers];
 
 	CTextureToFullScreenByLaplacianShader*	 m_pTextureToFullScreenByLaplacianShader;	 // Laplacian이라는 엣지를 찾는 방법을 이용해서 화면전체에 출력하는 셰이더
-	CStaticUITexturedShader*				m_pUITexture;
-
+	
 	POINT							m_ptOldCursorPos;
 
 	_TCHAR							m_pszFrameRate[50];
 
-	int								itest = 0;
+	int								m_nMaxScene;
+	int								m_nNowScene;
+	bool							m_bEndScene = false;
 
 // 카메라 관련 변수
 	bool							CameraCorrection;

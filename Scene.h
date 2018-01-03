@@ -46,8 +46,8 @@ struct MATERIALS
 class CScene
 {
 public:
-	CScene();
-	~CScene();
+    CScene();
+    ~CScene();
 
 	virtual bool OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
 	virtual bool OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam);
@@ -64,7 +64,7 @@ public:
 
 	virtual bool ProcessInput(UCHAR *pKeysBuffer);
 	virtual void AnimateObjects(float fTimeElapsed);
-	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera = NULL);
+	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera=NULL);
 
 	virtual void ReleaseUploadBuffers();
 
@@ -95,7 +95,7 @@ public:
 	ID3D12RootSignature *CreateGraphicsRootSignature(ID3D12Device *pd3dDevice);
 	ID3D12RootSignature *GetGraphicsRootSignature() { return(*m_ppd3dGraphicsRootSignature); }
 	ID3D12Resource* GetMaterialResource() { return m_pd3dcbMaterials; }
-
+	
 	virtual void BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
 	virtual void ReleaseObjects();
 	virtual void CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
@@ -122,7 +122,7 @@ public:
 
 	virtual ID3D12RootSignature *CreateGraphicsRootSignature(ID3D12Device *pd3dDevice);
 	virtual ID3D12Resource* GetMaterialResource() { return m_pd3dcbMaterials; }
-
+	
 	virtual void BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
 	virtual void ReleaseObjects();
 	virtual void CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);

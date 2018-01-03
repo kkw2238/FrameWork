@@ -22,22 +22,23 @@
 
 class CShader;
 
-struct CB_MAINTEXTURED_INFO
-{
-	UINT							m_nTexturedNum;
-	float							m_fTimeElapsed;
-};
-
 struct CB_GAMEOBJECT_INFO
 {
 	XMFLOAT4X4						m_xmf4x4World;
 	UINT							m_nMaterial;
 };
 
+// CB_DYNAMICUI_INFO는 좀 더 생각이 필요한 부분
 struct CB_DYNAMICUI_INFO
 {
 	float							m_nTexturedNum;
 	float							m_fTextureScale;
+};
+
+struct CB_MAINTEXTURED_INFO
+{
+	UINT							m_nTexturedNum;
+	float							m_fTimeElapsed;
 };
 
 

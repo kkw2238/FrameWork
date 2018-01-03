@@ -16,7 +16,7 @@ CScene::~CScene()
 void CScene::BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)
 {
 	m_nRootSignature = 1;
-	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature*[m_nRootSignature];
+	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature* [m_nRootSignature];
 	m_ppd3dGraphicsRootSignature[0] = CreateGraphicsRootSignature(pd3dDevice);
 
 	m_nShaders = 1;
@@ -35,7 +35,7 @@ void CScene::ReleaseObjects()
 
 	if (m_ppd3dGraphicsRootSignature)
 	{
-		for (int i = 0; i < m_nRootSignature; ++i)
+		for(int i = 0; i < m_nRootSignature; ++i)
 			m_ppd3dGraphicsRootSignature[i]->Release();
 	}
 
@@ -147,7 +147,7 @@ void CScene::UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList)
 
 void CScene::ReleaseShaderVariables()
 {
-
+	
 }
 
 
@@ -201,7 +201,7 @@ MainScene::~MainScene()
 
 bool MainScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
-
+	
 	return false;
 }
 
