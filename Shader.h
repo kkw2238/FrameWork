@@ -163,6 +163,30 @@ protected:
 #endif
 };
 
+class CBillboardShader : public CObjectsShader
+{
+public:
+	CBillboardShader();
+	~CBillboardShader();
+
+	virtual void CreateShader(ID3D12Device *pd3dDevice, ID3D12RootSignature *pd3dGraphicsRootSignature, UINT nRenderTargets = 1);
+
+	virtual void BuildObjects(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList, void *pContext = NULL);
+	virtual void ReleaseObjects();
+	virtual void AnimateObjects(float fTimeElapsed);
+
+	virtual void CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList);
+	virtual void UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList);
+	virtual void ReleaseShaderVariables();
+
+	virtual void ReleaseUploadBuffers();
+
+	virtual void Render(ID3D12GraphicsCommandList *pd3dCommandList, CCamera *pCamera);
+	void SetCamera(CCamera* pCamera);
+
+protected:
+	CCamera* m_pCamera;
+};
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 class CTextureToFullScreenByLaplacianShader : public CShader
