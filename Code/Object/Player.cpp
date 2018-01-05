@@ -25,6 +25,8 @@ CPlayer::CPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dComman
 	m_fPitch = 0.0f;
 	m_fRoll = 0.0f;
 	m_fYaw = 0.0f;
+
+	m_nRoomNumber = 18;
 }
 
 CPlayer::~CPlayer()
