@@ -653,10 +653,6 @@ void CGameFramework::FrameAdvance()
 
 	ID3D12CommandList *ppd3dCommandLists[] = { m_pd3dCommandList  };
 
-	hResult = m_pd3dCommandList->Close();
-	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
-	WaitForGpuComplete();
-
 	//D3D12_CPU_DESCRIPTOR_HANDLE pd3dRtvRenderTargetBufferCPUHandles[m_nRenderTargetBuffers] = { NULL, NULL };
 
 
@@ -682,12 +678,12 @@ void CGameFramework::FrameAdvance()
 #endif
 		m_pPlayer->Render(m_pd3dCommandList , m_pCamera );
 	
-		hResult = m_pd3dCommandList->Close();
-		m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
-		WaitForGpuComplete();
 	}
 
 
+	hResult = m_pd3dCommandList->Close();
+	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
+	WaitForGpuComplete();
 	
 
 #ifdef _WITH_PRESENT_PARAMETERS

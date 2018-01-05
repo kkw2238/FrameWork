@@ -96,6 +96,7 @@ public:
 	bool GetLive() const { return m_bLive; }
 
 	int GetNowRoomNumber() const { return m_nRoomNumber; }
+	void SetNowRoomNumber(const int nRoomnum) { m_nRoomNumber = nRoomnum; }
 
 protected:
 	ID3D12Resource					*m_pd3dcbPlayer = NULL;

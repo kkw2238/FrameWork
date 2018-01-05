@@ -353,74 +353,32 @@ GameScene::~GameScene()
 
 void GameScene::BuildLightsAndMaterials()
 {
-	m_pLights = new LIGHTS;
-	::ZeroMemory(m_pLights, sizeof(LIGHTS));
-
-	m_pLights->m_xmf4GlobalAmbient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-
-	m_pLights->m_pLights[0].m_bEnable = true;
-	m_pLights->m_pLights[0].m_nType = POINT_LIGHT;
-	m_pLights->m_pLights[0].m_fRange = 100.0f;
-	m_pLights->m_pLights[0].m_xmf4Ambient = XMFLOAT4(0.1f, 0.0f, 0.0f, 1.0f);
-	m_pLights->m_pLights[0].m_xmf4Diffuse = XMFLOAT4(0.8f, 0.0f, 0.0f, 1.0f);
-	m_pLights->m_pLights[0].m_xmf4Specular = XMFLOAT4(0.1f, 0.1f, 0.1f, 0.0f);
-	m_pLights->m_pLights[0].m_xmf3Position = XMFLOAT3(130.0f, 30.0f, 30.0f);
-	m_pLights->m_pLights[0].m_xmf3Direction = XMFLOAT3(0.0f, 0.0f, 0.0f);
-	m_pLights->m_pLights[0].m_xmf3Attenuation = XMFLOAT3(1.0f, 0.001f, 0.0001f);
-
-	m_pLights->m_pLights[1].m_bEnable = true;
-	m_pLights->m_pLights[1].m_nType = SPOT_LIGHT;
-	m_pLights->m_pLights[1].m_fRange = 50.0f;
-	m_pLights->m_pLights[1].m_xmf4Ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	m_pLights->m_pLights[1].m_xmf4Diffuse = XMFLOAT4(0.4f, 0.4f, 0.4f, 1.0f);
-	m_pLights->m_pLights[1].m_xmf4Specular = XMFLOAT4(0.1f, 0.1f, 0.1f, 0.0f);
-	m_pLights->m_pLights[1].m_xmf3Position = XMFLOAT3(-50.0f, 20.0f, -5.0f);
-	m_pLights->m_pLights[1].m_xmf3Direction = XMFLOAT3(0.0f, 0.0f, 1.0f);
-	m_pLights->m_pLights[1].m_xmf3Attenuation = XMFLOAT3(1.0f, 0.01f, 0.0001f);
-	m_pLights->m_pLights[1].m_fFalloff = 8.0f;
-	m_pLights->m_pLights[1].m_fPhi = (float)cos(XMConvertToRadians(40.0f));
-	m_pLights->m_pLights[1].m_fTheta = (float)cos(XMConvertToRadians(20.0f));
-
-	m_pLights->m_pLights[2].m_bEnable = true;
-	m_pLights->m_pLights[2].m_nType = DIRECTIONAL_LIGHT;
-	m_pLights->m_pLights[2].m_xmf4Ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	m_pLights->m_pLights[2].m_xmf4Diffuse = XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f);
-	m_pLights->m_pLights[2].m_xmf4Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
-	m_pLights->m_pLights[2].m_xmf3Direction = XMFLOAT3(1.0f, 0.0f, 0.0f);
-
-	m_pLights->m_pLights[3].m_bEnable = true;
-	m_pLights->m_pLights[3].m_nType = SPOT_LIGHT;
-	m_pLights->m_pLights[3].m_fRange = 60.0f;
-	m_pLights->m_pLights[3].m_xmf4Ambient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
-	m_pLights->m_pLights[3].m_xmf4Diffuse = XMFLOAT4(0.5f, 0.0f, 0.0f, 1.0f);
-	m_pLights->m_pLights[3].m_xmf4Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
-	m_pLights->m_pLights[3].m_xmf3Position = XMFLOAT3(-150.0f, 30.0f, 30.0f);
-	m_pLights->m_pLights[3].m_xmf3Direction = XMFLOAT3(0.0f, 1.0f, 1.0f);
-	m_pLights->m_pLights[3].m_xmf3Attenuation = XMFLOAT3(1.0f, 0.01f, 0.0001f);
-	m_pLights->m_pLights[3].m_fFalloff = 8.0f;
-	m_pLights->m_pLights[3].m_fPhi = (float)cos(XMConvertToRadians(90.0f));
-	m_pLights->m_pLights[3].m_fTheta = (float)cos(XMConvertToRadians(30.0f));
-
-	m_pMaterials = new MATERIALS;
-	::ZeroMemory(m_pMaterials, sizeof(MATERIALS));
-
-	m_pMaterials->m_pReflections[0] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f),  XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[1] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 10.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[2] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 15.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[3] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 20.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[4] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 25.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[5] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 30.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[6] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 35.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
-	m_pMaterials->m_pReflections[7] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 40.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	for (int i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->BuildLightsAndMaterials();
 }
 
 bool GameScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
+	
 	return false;
 }
 
 bool GameScene::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
+	switch (nMessageID)
+	{
+	case WM_KEYUP:
+		switch (wParam)
+		{
+		case VK_ESCAPE:
+			::PostQuitMessage(0);
+			break;
+		case VK_RETURN:
+			if (m_pPlayer->GetNowRoomNumber() < m_nRooms - 1)
+				m_pPlayer->SetNowRoomNumber(m_pPlayer->GetNowRoomNumber() + 1);
+			break;
+		}
+	}
 	return false;
 }
 
@@ -505,127 +463,71 @@ ID3D12RootSignature * GameScene::CreateGraphicsRootSignature(ID3D12Device * pd3d
 
 void GameScene::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList)
 {
-	m_nRootSignature = 1;
-	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature*[m_nRootSignature];
-	m_ppd3dGraphicsRootSignature[0] = CreateGraphicsRootSignature(pd3dDevice);
-
-	m_nShaders = 3;
-	m_ppShaders = new CShader*[m_nShaders];
-
-	CObjectsShader *pObjectShader = new CObjectsShader();
-	pObjectShader->CreateShader(pd3dDevice, m_ppd3dGraphicsRootSignature[0], 2);
-	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
-	m_ppShaders[0] = pObjectShader;
+	int i = 0;
+	m_nRooms = 10;
+	m_ppRooms = new DefaultRoom*[m_nRooms];
 	
-	m_pPlayer = new CMyPlayer(pd3dDevice, pd3dCommandList, GetGraphicsRootSignature(), (void*)NULL, 1);
+	m_pPlayer = new CMyPlayer(pd3dDevice, pd3dCommandList, NULL, (void*)NULL, 1);
 
-	CBillboardShader* pBillboard;
-	pBillboard = new CBillboardShader();
-	pBillboard->CreateGraphicsRootSignature(pd3dDevice);
-	pBillboard->CreateShader(pd3dDevice, pBillboard->GetGraphicsRootSignature(), 2);
-	pBillboard->SetCamera(m_pPlayer->GetCamera());
-	pBillboard->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
-
-	m_ppShaders[1] = pBillboard;
-
-	CStaticUITexturedShader* pUITexture;
-	pUITexture = new CStaticUITexturedShader();
-	pUITexture->CreateGraphicsRootSignature(pd3dDevice);
-	pUITexture->CreateShader(pd3dDevice, pUITexture->GetGraphicsRootSignature());
-	pUITexture->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
-	m_ppShaders[2] = pUITexture;
-
+	for (i = 0; i < m_nRooms; ++i) {
+		if (i % 3 == 0) {
+			DefaultRoom* pRoom = new DefaultRoom();
+			pRoom->BuildObjects(pd3dDevice, pd3dCommandList, m_pPlayer);
+			m_ppRooms[i] = pRoom;
+		}
+		else if (i % 3 == 1) {
+			IceRoadRoom* pRoom = new IceRoadRoom();
+			pRoom->BuildObjects(pd3dDevice, pd3dCommandList, m_pPlayer);
+			m_ppRooms[i] = pRoom;
+		}
+		else {
+			SmogCliffRoom* pRoom = new SmogCliffRoom();
+			pRoom->BuildObjects(pd3dDevice, pd3dCommandList, m_pPlayer);
+			m_ppRooms[i] = pRoom;
+		}
+	}
 	BuildLightsAndMaterials();
-
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 
 void GameScene::ReleaseObjects()
 {
-	if (m_ppd3dGraphicsRootSignature)
-	{
-		for (int i = 0; i < m_nRootSignature; ++i)
-			m_ppd3dGraphicsRootSignature[i]->Release();
-	}
-
-	if (m_ppShaders)
-	{
-		for (int i = 0; i < m_nShaders; i++)
-		{
-			m_ppShaders[i]->ReleaseShaderVariables();
-			m_ppShaders[i]->ReleaseObjects();
-			m_ppShaders[i]->Release();
-		}
-		delete[] m_ppShaders;
-	}
-
-	ReleaseShaderVariables();
-
-	if (m_pLights) delete m_pLights;
-	if (m_pMaterials) delete m_pMaterials;
+	int i = 0;
+	for (i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->ReleaseObjects();
 }
 
 void GameScene::CreateShaderVariables(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList)
 {
-	UINT ncbElementBytes = ((sizeof(LIGHTS) + 255) & ~255); //256의 배수
-	m_pd3dcbLights = ::CreateBufferResource(pd3dDevice, pd3dCommandList, NULL, ncbElementBytes, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL);
-
-	m_pd3dcbLights->Map(0, NULL, (void **)&m_pcbMappedLights);
-
-	UINT ncbMaterialBytes = ((sizeof(MATERIALS) + 255) & ~255); //256의 배수
-	m_pd3dcbMaterials = ::CreateBufferResource(pd3dDevice, pd3dCommandList, NULL, ncbMaterialBytes, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL);
-
-	m_pd3dcbMaterials->Map(0, NULL, (void **)&m_pcbMappedMaterials);
+	int i = 0;
+	for (i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 
 void GameScene::Render(ID3D12GraphicsCommandList * pd3dCommandList, CCamera * pCamera)
 {
-	int i = 0;
-	pd3dCommandList->SetGraphicsRootSignature(m_ppd3dGraphicsRootSignature[0]);
-
-	pCamera->SetViewportsAndScissorRects(pd3dCommandList);
-	pCamera->UpdateShaderVariables(pd3dCommandList);
-
-	UpdateShaderVariables(pd3dCommandList);
-
-	D3D12_GPU_VIRTUAL_ADDRESS d3dcbLightsGpuVirtualAddress = m_pd3dcbLights->GetGPUVirtualAddress();
-	pd3dCommandList->SetGraphicsRootConstantBufferView(ROOT_PARAMETER_LIGHT, d3dcbLightsGpuVirtualAddress); //Lights
-
-	D3D12_GPU_VIRTUAL_ADDRESS d3dcbMaterialsGpuVirtualAddress = m_pd3dcbMaterials->GetGPUVirtualAddress();
-	pd3dCommandList->SetGraphicsRootConstantBufferView(ROOT_PARAMETER_MATERIAL, d3dcbMaterialsGpuVirtualAddress); //Materials
-
-	for (i = 0; i < m_nShaders - 1; i++)
-	{
-		m_ppShaders[i]->Render(pd3dCommandList, pCamera);
-	}
-
-	m_ppShaders[i]->Render(pd3dCommandList, pCamera); // UI
+	m_ppRooms[m_pPlayer->GetNowRoomNumber()]->Render(pd3dCommandList, pCamera);
 }
 
 void GameScene::ReleaseUploadBuffers()
 {
-	for (int i = 0; i < m_nShaders; i++) 
-		m_ppShaders[i]->ReleaseUploadBuffers();
+	int i = 0;
+	for (i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->ReleaseUploadBuffers();
 }
 
 void GameScene::UpdateShaderVariables(ID3D12GraphicsCommandList * pd3dCommandList)
 {
-	::memcpy(m_pcbMappedLights, m_pLights, sizeof(LIGHTS));
-	::memcpy(m_pcbMappedMaterials, m_pMaterials, sizeof(MATERIALS));
+	int i = 0;
+	for (i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->UpdateShaderVariables(pd3dCommandList);
 }
 
 void GameScene::ReleaseShaderVariables()
 {
-	if (m_pd3dcbLights)
-	{
-		m_pd3dcbLights->Unmap(0, NULL);
-		m_pd3dcbLights->Release();
-	}
-	if (m_pd3dcbMaterials)
-	{
-		m_pd3dcbMaterials->Unmap(0, NULL);
-		m_pd3dcbMaterials->Release();
-	}
+	int i = 0;
+	for (i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->ReleaseShaderVariables();
 }
 
 bool GameScene::ProcessInput(UCHAR * pKeysBuffer)
@@ -635,18 +537,9 @@ bool GameScene::ProcessInput(UCHAR * pKeysBuffer)
 
 void GameScene::AnimateObjects(float fTimeElapsed)
 {
-	//CScene::AnimateObjects(fTimeElapsed);
-
-	for (int i = 0; i < m_nShaders; i++)
-	{
-		m_ppShaders[i]->AnimateObjects(fTimeElapsed);
-	}
-
-	if (m_pLights)
-	{
-		m_pLights->m_pLights[1].m_xmf3Position = m_pPlayer->GetPosition();
-		m_pLights->m_pLights[1].m_xmf3Direction = m_pPlayer->GetLookVector();
-	}
+	int i = 0;
+	for (i = 0; i < m_nRooms; ++i)
+		m_ppRooms[i]->AnimateObjects(fTimeElapsed);
 }
 ////////////////////////////////////////////////////////////////////////
 
