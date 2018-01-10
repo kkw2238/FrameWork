@@ -13,7 +13,7 @@ CGameFramework::CGameFramework()
 	m_fMouseSensitive = 4.5f; // Default 마우스 민감도
 	m_nRtvDescriptorIncrementSize = 0;
 	m_nMaxScene = 3;
-	m_nNowScene = 0;
+	m_nNowScene = 1;
 
 	m_hFenceEvent = NULL;
 	for (int i = 0; i < m_nSwapChainBuffers; i++) m_nFenceValues[i] = 0;
@@ -496,9 +496,9 @@ void CGameFramework::BuildObjects()
 	m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);
 	m_ppScene = new CScene*[m_nMaxScene];
 
-	MainScene* pMainScene = new MainScene();
-	pMainScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
-	m_ppScene[0] = pMainScene;
+	//MainScene* pMainScene = new MainScene();
+	//pMainScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
+	m_ppScene[0] = NULL;
 
 	GameScene* pGameScene = new GameScene();
 	pGameScene->BuildObjects(m_pd3dDevice, m_pd3dCommandList);
@@ -657,8 +657,8 @@ void CGameFramework::FrameAdvance()
 
 
 	if (m_nNowScene == GAMESCENE) {
-		hResult = m_pd3dCommandAllocator->Reset();
-		hResult = m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);
+		/*hResult = m_pd3dCommandAllocator->Reset();
+		hResult = m_pd3dCommandList->Reset(m_pd3dCommandAllocator , NULL);*/
 
 		// 렌더 타겟 버퍼를 리소스로 만든다.
 		::SynchronizeResourceTransition(m_pd3dCommandList, m_ppd3dRenderTargetBuffers[0], D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_GENERIC_READ);
@@ -680,11 +680,9 @@ void CGameFramework::FrameAdvance()
 	
 	}
 
-
 	hResult = m_pd3dCommandList->Close();
 	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
 	WaitForGpuComplete();
-	
 
 #ifdef _WITH_PRESENT_PARAMETERS
 	DXGI_PRESENT_PARAMETERS dxgiPresentParameters;

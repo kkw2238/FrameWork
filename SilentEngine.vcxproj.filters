@@ -105,8 +105,11 @@
     <ClInclude Include="Code\Object\Mesh\Mesh.h">
       <Filter>Mesh\Header</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="EffectShaders.h">
+      <Filter>Shaders\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalShaders.h">
+      <Filter>Shaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -143,8 +146,11 @@
     <ClCompile Include="Code\Shaders\Shader.cpp">
       <Filter>Shaders\Source</Filter>
     </ClCompile>
-    <ClCompile Include="Room.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="EffectShaders.cpp">
+      <Filter>Shaders\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="NormalShaders.cpp">
+      <Filter>Shaders\Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +174,15 @@
       <Filter>Shaders\hlsl</Filter>
     </FxCompile>
     <FxCompile Include="hlsl\Shaders.hlsl">
+      <Filter>Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="hlsl\Effects.hlsl">
+      <Filter>Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="NormalMapShaders.hlsl">
+      <Filter>Shaders\hlsl</Filter>
+    </FxCompile>
+    <FxCompile Include="Common.hlsl">
       <Filter>Shaders\hlsl</Filter>
     </FxCompile>
   </ItemGroup>
