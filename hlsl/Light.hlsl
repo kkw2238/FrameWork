@@ -20,7 +20,14 @@ struct MATERIAL
 
 struct MATERIALDATA
 {
-
+	float4		m_cDiffuseAlbedo;	// 분산 반사율
+	float3		m_vFresnelR0;		// 반사광 
+	float		m_fRoughness;		// 표면 거칠기 
+	float4x4	m_mMatTransform;	// 마테리얼 변환 행렬 
+	uint		m_iDiffuseMapIndex;	
+	uint		m_iNormalMapIndex;
+	uint		m_iMatPad;
+	uint		m_iMatPad2;
 };
 
 struct LIGHT

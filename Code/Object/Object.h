@@ -25,6 +25,7 @@ class CShader;
 struct CB_GAMEOBJECT_INFO
 {
 	XMFLOAT4X4						m_xmf4x4World;
+	XMFLOAT4X4						m_xmf4x4TexTransform;
 	UINT							m_nMaterial;
 };
 
@@ -129,6 +130,7 @@ public:
 
 public:
 	XMFLOAT4X4						m_xmf4x4World;
+	XMFLOAT4X4						m_xmf4x4TexTransform;
 
 	CMesh							**m_ppMeshes;
 	int								m_nMeshes;

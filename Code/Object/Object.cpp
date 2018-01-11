@@ -143,6 +143,7 @@ void CMaterial::ReleaseUploadBuffers()
 CGameObject::CGameObject(int nMeshes)
 {
 	m_xmf4x4World = Matrix4x4::Identity();
+	m_xmf4x4World = Matrix4x4::Identity();
 
 	m_nMeshes = nMeshes;
 	m_ppMeshes = NULL;
@@ -217,6 +218,7 @@ void CGameObject::ReleaseShaderVariables()
 void CGameObject::UpdateShaderVariables(ID3D12GraphicsCommandList *pd3dCommandList)
 {
 	XMStoreFloat4x4(&m_pcbMappedGameObject->m_xmf4x4World, XMMatrixTranspose(XMLoadFloat4x4(&m_xmf4x4World)));
+	XMStoreFloat4x4(&m_pcbMappedGameObject->m_xmf4x4TexTransform, XMMatrixTranspose(XMLoadFloat4x4(&m_xmf4x4TexTransform)));
 	if (m_pMaterial) m_pcbMappedGameObject->m_nMaterial = m_pMaterial->m_nReflection;
 }
 

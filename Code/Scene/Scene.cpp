@@ -570,16 +570,19 @@ void GameScene::ReleaseObjects()
 	if (m_ppd3dGraphicsRootSignature)
 	{
 		for (int i = 0; i < m_nRootSignature; ++i)
-			m_ppd3dGraphicsRootSignature[i]->Release();
+			if(m_ppd3dGraphicsRootSignature[i])
+				m_ppd3dGraphicsRootSignature[i]->Release();
 	}
 
 	if (m_ppShaders)
 	{
 		for (int i = 0; i < m_nShaders; i++)
 		{
-			m_ppShaders[i]->ReleaseShaderVariables();
-			m_ppShaders[i]->ReleaseObjects();
-			m_ppShaders[i]->Release();
+			if (m_ppShaders[i]) {
+				m_ppShaders[i]->ReleaseShaderVariables();
+				m_ppShaders[i]->ReleaseObjects();
+				m_ppShaders[i]->Release();
+			}
 		}
 		delete[] m_ppShaders;
 	}
