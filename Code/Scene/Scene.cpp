@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "Scene.h"
+#include "NormalShaders.h"
 
 CScene::CScene()
 {
@@ -537,8 +538,8 @@ void GameScene::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandLis
 	m_nShaders = 3;
 	m_ppShaders = new CShader*[m_nShaders];
 
-	CObjectsShader *pObjectShader = new CObjectsShader();
-	pObjectShader->CreateShader(pd3dDevice, m_ppd3dGraphicsRootSignature[0], 2);
+	CNormalObjectShader *pObjectShader = new CNormalObjectShader();
+	pObjectShader->CreateShader(pd3dDevice, pObjectShader->GetGraphicsRootSignature(), 2);
 	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
 	m_ppShaders[0] = pObjectShader;
 	

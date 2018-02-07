@@ -18,17 +18,6 @@ struct MATERIAL
 	float4				m_cEmissive;
 };
 
-struct MATERIALDATA
-{
-	float4		m_cDiffuseAlbedo;	// 분산 반사율
-	float3		m_vFresnelR0;		// 반사광 
-	float		m_fRoughness;		// 표면 거칠기 
-	float4x4	m_mMatTransform;	// 마테리얼 변환 행렬 
-	uint		m_iDiffuseMapIndex;	
-	uint		m_iNormalMapIndex;
-	uint		m_iMatPad;
-	uint		m_iMatPad2;
-};
 
 struct LIGHT
 {
@@ -52,11 +41,50 @@ cbuffer cbMaterial : register(b3)
 	MATERIAL			gMaterials[MAX_MATERIALS];
 };
 
+
+// 새로 변경 사항 
+struct MATERIALDATA
+{
+	float4		m_cDiffuseAlbedo;	// 분산 반사율
+	float3		m_vFresnelR0;		// 반사광 
+	float		m_fRoughness;		// 표면 거칠기 
+	float4x4	m_mMatTransform;	// 마테리얼 변환 행렬 
+};
+
+struct LIGHTDATA
+{
+	float3		m_Strangth;
+	float		m_FalloffStart;
+	float3		m_Direction;	// 지향광과 점저
+	float		m_FalloffEnd;	// 전구, 스포트라이트 효과에만 쓰인다.
+	float3		m_Position;		// 전구, 스포트라이트 효과에서 쓰인다.
+	float		m_SpotPower;	// 스포트라이트에서만 쓰인다.
+};
+
+StructuredBuffer<MATERIALDATA> gMaterialData : register(t5, space1); // 마테리얼 배열
+
 cbuffer cbLights : register(b4)
 {
 	LIGHT				gLights[MAX_LIGHTS];
 	float4				gcGlobalAmbientLight;
 };
+
+// 스포트라이트, 전구효과에 적용하는 선형 감쇠 계수를 계산
+float CalcAttenuation(float d, float falloffStart, float falloffEnd)
+{
+	return saturate((falloffEnd - d) / (falloffEnd - falloffStart));
+}
+
+// 프레넬 반사의 근삿값을 계산
+float3 SchlickFresnel(float3 R0, float3 normal, float3 lightVec)
+{
+	float conIncidentAngle = saturate(dot(normal, lightVec));
+
+	float f0 = 1.0f - conIncidentAngle;
+	float3 reflectPercent = R0 + (1.0f - R0) * (f0 * f0 * f0 * f0 * f0);
+
+	return reflectPercent;
+}
 
 float4 DirectionalLight(int nIndex, float3 vNormal, float3 vToCamera)
 {

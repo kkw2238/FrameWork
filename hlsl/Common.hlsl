@@ -13,7 +13,8 @@ cbuffer cbCameraInfo : register(b1)
 cbuffer cbGameObjectInfo : register(b2)
 {
 	matrix		gmtxGameObject : packoffset(c0);
-	uint		gnMaterial : packoffset(c4);
+	matrix		gmtxTexMatrix : packoffset(c4);
+	uint		gnMaterial : packoffset(c8);
 };
 
 cbuffer cbBillBoardInfo : register(b6)
@@ -21,6 +22,24 @@ cbuffer cbBillBoardInfo : register(b6)
 	matrix		gmtxBillBoard : packoffset(c0);
 	uint		gnBillBoardMaterial : packoffset(c4);
 };
+
+cbuffer cbPass : register(b7)
+{
+	float4x4 gView;
+	float4x4 gProj;
+	float4x4 gInvProj;
+	float4x4 gViewProj;
+	float4x4 gInvViewProj;
+	float3	 gEyePosW;
+	float	 cbPerObjectPad1;
+	float2	 gRenderTargetSize;
+	float2	 gInvRenderTargetSize;
+	float	 gNearZ;
+	float	 gFarZ;
+	float	 gTotalTime;
+	float	 gDeltaTime;
+	float4   gAmbientLight;
+}
 
 float3 NormalSampleToWorldSpace(float3 normalMapSample, float3 unitNormalW, float3 tangentW) 
 {
