@@ -157,9 +157,8 @@
     <ClInclude Include="Code\Object\Player.h" />
     <ClInclude Include="Code\Scene\Scene.h" />
     <ClInclude Include="Code\Shaders\Shader.h" />
-    <ClInclude Include="EffectShaders.h" />
-    <ClInclude Include="NormalShaders.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="SilentEngine.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -174,8 +173,7 @@
     <ClCompile Include="Code\Object\Player.cpp" />
     <ClCompile Include="Code\Scene\Scene.cpp" />
     <ClCompile Include="Code\Shaders\Shader.cpp" />
-    <ClCompile Include="EffectShaders.cpp" />
-    <ClCompile Include="NormalShaders.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="SilentEngine.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -192,6 +190,7 @@
     <Image Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <FxCompile Include="hlsl\Common.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -204,6 +203,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
+=======
+>>>>>>> parent of 114cc0c... 2018.01.10 Backup
     <FxCompile Include="hlsl\Light.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -222,12 +223,15 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
+<<<<<<< HEAD
     <FxCompile Include="hlsl\Shaders.hlsl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </FxCompile>
+=======
+>>>>>>> parent of 114cc0c... 2018.01.10 Backup
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

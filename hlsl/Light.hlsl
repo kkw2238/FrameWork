@@ -18,7 +18,10 @@ struct MATERIAL
 	float4				m_cEmissive;
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 114cc0c... 2018.01.10 Backup
 struct LIGHT
 {
 	float4				m_cAmbient;
@@ -102,7 +105,7 @@ float4 DirectionalLight(int nIndex, float3 vNormal, float3 vToCamera)
 #ifdef _WITH_LOCAL_VIEWER_HIGHLIGHTING
 			float3 vHalf = normalize(vToCamera + vToLight);
 #else
-			float3 vHalf = float3(0.0f, 1.0f, 0.0f);
+			float3 vHalf = float3(1.0f, 1.0f, 1.0f);
 #endif
 			fSpecularFactor = pow(max(dot(vHalf, vNormal), 0.0f), gMaterials[gnMaterial].m_cSpecular.a);
 #endif
@@ -132,7 +135,7 @@ float4 PointLight(int nIndex, float3 vPosition, float3 vNormal, float3 vToCamera
 #ifdef _WITH_LOCAL_VIEWER_HIGHLIGHTING
 				float3 vHalf = normalize(vToCamera + vToLight);
 #else
-				float3 vHalf = float3(0.0f, 1.0f, 0.0f);
+				float3 vHalf = float3(1.0f, 1.0f, 1.0f);
 #endif
 				fSpecularFactor = pow(max(dot(vHalf, vNormal), 0.0f), gMaterials[gnMaterial].m_cSpecular.a);
 #endif
@@ -165,7 +168,7 @@ float4 SpotLight(int nIndex, float3 vPosition, float3 vNormal, float3 vToCamera)
 #ifdef _WITH_LOCAL_VIEWER_HIGHLIGHTING
 				float3 vHalf = normalize(vToCamera + vToLight);
 #else
-				float3 vHalf = float3(0.0f, 1.0f, 0.0f);
+				float3 vHalf = float3(1.0f, 1.0f, 1.0f);
 #endif
 				fSpecularFactor = pow(max(dot(vHalf, vNormal), 0.0f), gMaterials[gnMaterial].m_cSpecular.a);
 #endif

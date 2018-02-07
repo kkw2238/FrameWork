@@ -14,7 +14,6 @@ struct VS_MAINTEXTURED_OUTPUT
 {
 	float4 position : SV_POSITION;
 	float2 uv : TEXCOORD;
-
 };
 
 Texture2DArray gMaintxTextures : register(t4);
