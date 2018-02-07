@@ -103,7 +103,6 @@ public:
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
 =======
 	int GetNowRoomNumber() const { return m_nRoomNumber; }
-	void SetNowRoomNumber(const int nRoomnum) { m_nRoomNumber = nRoomnum; }
 
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
 protected:

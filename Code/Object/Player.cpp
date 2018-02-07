@@ -33,8 +33,12 @@ CPlayer::CPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dComman
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
 =======
 
+<<<<<<< HEAD
 	m_nRoomNumber = 5;
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
+=======
+	m_nRoomNumber = 18;
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 CPlayer::~CPlayer()

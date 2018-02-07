@@ -629,6 +629,10 @@ void CGameFramework::FrameAdvance()
 	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
 	WaitForGpuComplete();
 
+	hResult = m_pd3dCommandList->Close();
+	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
+	WaitForGpuComplete();
+
 	//D3D12_CPU_DESCRIPTOR_HANDLE pd3dRtvRenderTargetBufferCPUHandles[m_nRenderTargetBuffers] = { NULL, NULL };
 
 
@@ -670,9 +674,6 @@ void CGameFramework::FrameAdvance()
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
 =======
 
-	hResult = m_pd3dCommandList->Close();
-	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
-	WaitForGpuComplete();
 	
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
 

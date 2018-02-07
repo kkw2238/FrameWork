@@ -142,6 +142,7 @@ protected:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	int							m_nShaders = 0;
 	DefaultRoom					m_pRooms[16];
@@ -151,6 +152,9 @@ protected:
 =======
 	int							m_nShaders = 0;
 >>>>>>> parent of fea3639... 2018.02.07 Backup
+=======
+	int							m_nShaders = 0;
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 
 	LIGHTS						*m_pLights = NULL;
 
@@ -161,10 +165,13 @@ protected:
 
 	ID3D12Resource				*m_pd3dcbMaterials = NULL;
 	MATERIAL					*m_pcbMappedMaterials = NULL;
+<<<<<<< HEAD
 =======
 	int					m_nRooms;
 	DefaultRoom**		m_ppRooms;
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
+=======
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 };
 
 class ShopScene : public CScene

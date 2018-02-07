@@ -354,12 +354,19 @@ GameScene::~GameScene()
 void GameScene::BuildLightsAndMaterials()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	m_pLights = new LIGHTS;
 	::ZeroMemory(m_pLights, sizeof(LIGHTS));
 
 <<<<<<< HEAD
 	m_pLights->m_xmf4GlobalAmbient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
 =======
+	m_pLights->m_xmf4GlobalAmbient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
+=======
+	m_pLights = new LIGHTS;
+	::ZeroMemory(m_pLights, sizeof(LIGHTS));
+
 	m_pLights->m_xmf4GlobalAmbient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
 
@@ -410,6 +417,7 @@ void GameScene::BuildLightsAndMaterials()
 	::ZeroMemory(m_pMaterials, sizeof(MATERIALS));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	m_pMaterials->m_pReflections[0] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[1] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 10.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[2] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 15.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
@@ -419,6 +427,8 @@ void GameScene::BuildLightsAndMaterials()
 	m_pMaterials->m_pReflections[6] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 35.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[7] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 40.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 =======
+=======
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 	m_pMaterials->m_pReflections[0] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f),  XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
 	m_pMaterials->m_pReflections[1] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 10.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
 	m_pMaterials->m_pReflections[2] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 15.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
@@ -427,35 +437,23 @@ void GameScene::BuildLightsAndMaterials()
 	m_pMaterials->m_pReflections[5] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 30.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
 	m_pMaterials->m_pReflections[6] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 35.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
 	m_pMaterials->m_pReflections[7] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 40.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+<<<<<<< HEAD
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
 =======
 	for (int i = 0; i < m_nRooms; ++i)
 		m_ppRooms[i]->BuildLightsAndMaterials();
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
+=======
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 bool GameScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
-	
 	return false;
 }
 
 bool GameScene::OnProcessingKeyboardMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
 {
-	switch (nMessageID)
-	{
-	case WM_KEYUP:
-		switch (wParam)
-		{
-		case VK_ESCAPE:
-			::PostQuitMessage(0);
-			break;
-		case VK_RETURN:
-			if (m_pPlayer->GetNowRoomNumber() < m_nRooms - 1)
-				m_pPlayer->SetNowRoomNumber(m_pPlayer->GetNowRoomNumber() + 1);
-			break;
-		}
-	}
 	return false;
 }
 
@@ -541,6 +539,9 @@ ID3D12RootSignature * GameScene::CreateGraphicsRootSignature(ID3D12Device * pd3d
 void GameScene::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 	m_nRootSignature = 1;
 	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature*[m_nRootSignature];
 	m_ppd3dGraphicsRootSignature[0] = CreateGraphicsRootSignature(pd3dDevice);
@@ -548,6 +549,7 @@ void GameScene::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandLis
 	m_nShaders = 3;
 	m_ppShaders = new CShader*[m_nShaders];
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	CNormalObjectShader *pObjectShader = new CNormalObjectShader();
@@ -567,32 +569,39 @@ void GameScene::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandLis
 	m_nRooms = 10;
 	m_ppRooms = new DefaultRoom*[m_nRooms];
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
+=======
+	CObjectsShader *pObjectShader = new CObjectsShader();
+	pObjectShader->CreateShader(pd3dDevice, m_ppd3dGraphicsRootSignature[0], 2);
+	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
+	m_ppShaders[0] = pObjectShader;
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 	
-	m_pPlayer = new CMyPlayer(pd3dDevice, pd3dCommandList, NULL, (void*)NULL, 1);
+	m_pPlayer = new CMyPlayer(pd3dDevice, pd3dCommandList, GetGraphicsRootSignature(), (void*)NULL, 1);
 
-	for (i = 0; i < m_nRooms; ++i) {
-		if (i % 3 == 0) {
-			DefaultRoom* pRoom = new DefaultRoom();
-			pRoom->BuildObjects(pd3dDevice, pd3dCommandList, m_pPlayer);
-			m_ppRooms[i] = pRoom;
-		}
-		else if (i % 3 == 1) {
-			IceRoadRoom* pRoom = new IceRoadRoom();
-			pRoom->BuildObjects(pd3dDevice, pd3dCommandList, m_pPlayer);
-			m_ppRooms[i] = pRoom;
-		}
-		else {
-			SmogCliffRoom* pRoom = new SmogCliffRoom();
-			pRoom->BuildObjects(pd3dDevice, pd3dCommandList, m_pPlayer);
-			m_ppRooms[i] = pRoom;
-		}
-	}
+	CBillboardShader* pBillboard;
+	pBillboard = new CBillboardShader();
+	pBillboard->CreateGraphicsRootSignature(pd3dDevice);
+	pBillboard->CreateShader(pd3dDevice, pBillboard->GetGraphicsRootSignature(), 2);
+	pBillboard->SetCamera(m_pPlayer->GetCamera());
+	pBillboard->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
+
+	m_ppShaders[1] = pBillboard;
+
+	CStaticUITexturedShader* pUITexture;
+	pUITexture = new CStaticUITexturedShader();
+	pUITexture->CreateGraphicsRootSignature(pd3dDevice);
+	pUITexture->CreateShader(pd3dDevice, pUITexture->GetGraphicsRootSignature());
+	pUITexture->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
+	m_ppShaders[2] = pUITexture;
+
 	BuildLightsAndMaterials();
+
 	CreateShaderVariables(pd3dDevice, pd3dCommandList);
 }
 
 void GameScene::ReleaseObjects()
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (m_ppd3dGraphicsRootSignature)
 	{
@@ -603,6 +612,12 @@ void GameScene::ReleaseObjects()
 =======
 			m_ppd3dGraphicsRootSignature[i]->Release();
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
+=======
+	if (m_ppd3dGraphicsRootSignature)
+	{
+		for (int i = 0; i < m_nRootSignature; ++i)
+			m_ppd3dGraphicsRootSignature[i]->Release();
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 	}
 
 	if (m_ppShaders)
@@ -610,11 +625,17 @@ void GameScene::ReleaseObjects()
 		for (int i = 0; i < m_nShaders; i++)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			if (m_ppShaders[i]) {
 				m_ppShaders[i]->ReleaseShaderVariables();
 				m_ppShaders[i]->ReleaseObjects();
 				m_ppShaders[i]->Release();
 			}
+=======
+			m_ppShaders[i]->ReleaseShaderVariables();
+			m_ppShaders[i]->ReleaseObjects();
+			m_ppShaders[i]->Release();
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 =======
 			m_ppShaders[i]->ReleaseShaderVariables();
 			m_ppShaders[i]->ReleaseObjects();
@@ -628,27 +649,56 @@ void GameScene::ReleaseObjects()
 
 	if (m_pLights) delete m_pLights;
 	if (m_pMaterials) delete m_pMaterials;
+<<<<<<< HEAD
 =======
 	int i = 0;
 	for (i = 0; i < m_nRooms; ++i)
 		m_ppRooms[i]->ReleaseObjects();
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
+=======
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 void GameScene::CreateShaderVariables(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList)
 {
-	int i = 0;
-	for (i = 0; i < m_nRooms; ++i)
-		m_ppRooms[i]->CreateShaderVariables(pd3dDevice, pd3dCommandList);
+	UINT ncbElementBytes = ((sizeof(LIGHTS) + 255) & ~255); //256의 배수
+	m_pd3dcbLights = ::CreateBufferResource(pd3dDevice, pd3dCommandList, NULL, ncbElementBytes, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL);
+
+	m_pd3dcbLights->Map(0, NULL, (void **)&m_pcbMappedLights);
+
+	UINT ncbMaterialBytes = ((sizeof(MATERIALS) + 255) & ~255); //256의 배수
+	m_pd3dcbMaterials = ::CreateBufferResource(pd3dDevice, pd3dCommandList, NULL, ncbMaterialBytes, D3D12_HEAP_TYPE_UPLOAD, D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER, NULL);
+
+	m_pd3dcbMaterials->Map(0, NULL, (void **)&m_pcbMappedMaterials);
 }
 
 void GameScene::Render(ID3D12GraphicsCommandList * pd3dCommandList, CCamera * pCamera)
 {
-	m_ppRooms[m_pPlayer->GetNowRoomNumber()]->Render(pd3dCommandList, pCamera);
+	int i = 0;
+	pd3dCommandList->SetGraphicsRootSignature(m_ppd3dGraphicsRootSignature[0]);
+
+	pCamera->SetViewportsAndScissorRects(pd3dCommandList);
+	pCamera->UpdateShaderVariables(pd3dCommandList);
+
+	UpdateShaderVariables(pd3dCommandList);
+
+	D3D12_GPU_VIRTUAL_ADDRESS d3dcbLightsGpuVirtualAddress = m_pd3dcbLights->GetGPUVirtualAddress();
+	pd3dCommandList->SetGraphicsRootConstantBufferView(ROOT_PARAMETER_LIGHT, d3dcbLightsGpuVirtualAddress); //Lights
+
+	D3D12_GPU_VIRTUAL_ADDRESS d3dcbMaterialsGpuVirtualAddress = m_pd3dcbMaterials->GetGPUVirtualAddress();
+	pd3dCommandList->SetGraphicsRootConstantBufferView(ROOT_PARAMETER_MATERIAL, d3dcbMaterialsGpuVirtualAddress); //Materials
+
+	for (i = 0; i < m_nShaders - 1; i++)
+	{
+		m_ppShaders[i]->Render(pd3dCommandList, pCamera);
+	}
+
+	m_ppShaders[i]->Render(pd3dCommandList, pCamera); // UI
 }
 
 void GameScene::ReleaseUploadBuffers()
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -660,20 +710,30 @@ void GameScene::ReleaseUploadBuffers()
 	for (i = 0; i < m_nRooms; ++i)
 		m_ppRooms[i]->ReleaseUploadBuffers();
 >>>>>>> parent of 114cc0c... 2018.01.10 Backup
+=======
+	for (int i = 0; i < m_nShaders; i++) 
+		m_ppShaders[i]->ReleaseUploadBuffers();
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 void GameScene::UpdateShaderVariables(ID3D12GraphicsCommandList * pd3dCommandList)
 {
-	int i = 0;
-	for (i = 0; i < m_nRooms; ++i)
-		m_ppRooms[i]->UpdateShaderVariables(pd3dCommandList);
+	::memcpy(m_pcbMappedLights, m_pLights, sizeof(LIGHTS));
+	::memcpy(m_pcbMappedMaterials, m_pMaterials, sizeof(MATERIALS));
 }
 
 void GameScene::ReleaseShaderVariables()
 {
-	int i = 0;
-	for (i = 0; i < m_nRooms; ++i)
-		m_ppRooms[i]->ReleaseShaderVariables();
+	if (m_pd3dcbLights)
+	{
+		m_pd3dcbLights->Unmap(0, NULL);
+		m_pd3dcbLights->Release();
+	}
+	if (m_pd3dcbMaterials)
+	{
+		m_pd3dcbMaterials->Unmap(0, NULL);
+		m_pd3dcbMaterials->Release();
+	}
 }
 
 bool GameScene::ProcessInput(UCHAR * pKeysBuffer)
@@ -683,9 +743,18 @@ bool GameScene::ProcessInput(UCHAR * pKeysBuffer)
 
 void GameScene::AnimateObjects(float fTimeElapsed)
 {
-	int i = 0;
-	for (i = 0; i < m_nRooms; ++i)
-		m_ppRooms[i]->AnimateObjects(fTimeElapsed);
+	//CScene::AnimateObjects(fTimeElapsed);
+
+	for (int i = 0; i < m_nShaders; i++)
+	{
+		m_ppShaders[i]->AnimateObjects(fTimeElapsed);
+	}
+
+	if (m_pLights)
+	{
+		m_pLights->m_pLights[1].m_xmf3Position = m_pPlayer->GetPosition();
+		m_pLights->m_pLights[1].m_xmf3Direction = m_pPlayer->GetLookVector();
+	}
 }
 ////////////////////////////////////////////////////////////////////////
 
