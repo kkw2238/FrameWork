@@ -174,10 +174,10 @@
     <FxCompile Include="hlsl\Effects.hlsl">
       <Filter>Shaders\hlsl</Filter>
     </FxCompile>
-    <FxCompile Include="hlsl\Common.hlsl">
+    <FxCompile Include="NormalMapShaders.hlsl">
       <Filter>Shaders\hlsl</Filter>
     </FxCompile>
-    <FxCompile Include="hlsl\NormalMapShaders.hlsl">
+    <FxCompile Include="Common.hlsl">
       <Filter>Shaders\hlsl</Filter>
     </FxCompile>
 =======

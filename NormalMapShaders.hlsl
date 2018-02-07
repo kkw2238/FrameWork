@@ -20,19 +20,11 @@ Texture2D gNormalTex : register(t6);
 Texture2D gTexture : register(t7);
 SamplerState gNormalState : register(s3);
 
-struct MATERIALDATA
-{
-	float4		m_cDiffuseAlbedo;	// 분산 반사율
-	float3		m_vFresnelR0;		// 반사광 
-	float		m_fRoughness;		// 표면 거칠기 
-	float4x4	m_mMatTransform;	// 마테리얼 변환 행렬 
-};
-
 VS_NORMALMAP_OUT VS_Normal(VS_NORMALMAP_IN input)
 {
 	VS_NORMALMAP_OUT output;
 	
-	MATERIALDATA material = gMaterialData[gnMaterial];
+	MATERIAL material = gMaterials[gnMaterial];
 
 	float4 posW = mul(float4(input.position, 1.0f), gmtxGameObject);
 	output.positionW = posW.xyz;
@@ -50,32 +42,32 @@ VS_NORMALMAP_OUT VS_Normal(VS_NORMALMAP_IN input)
 
 float4 PS_Normal(VS_NORMALMAP_OUT input)
 {
-	MATERIALDATA material = gMaterialData[gnMaterial];
-	float4 diffuseAlbedo = material.m_cDiffuseAlbedo;
+	MATERIAL material = gMaterials[gnMaterial];
+	float4 diffuseAlbedo = material.m_cDiffuse;
 
 	input.NormalW = normalize(input.NormalW);
 
-	float4 normalMapSample = gNormalTex.Sample(gNormalState, input.uv);	// 노말맵 샘플을 구한다.
-	float3 bumpedNormalW = NormalSampleToWorldSpace(normalMapSample.rgb, input.normalW, input.tangentW);	// 법선 백터를 월드 좌표계로 변경
+	float4 normalMapSample = gNormalTex.Sample(gNormalState, input.uv);
+	float3 bumpedNormalW = NormalSampleToWorldSpace(normalMapSample.rgb, input.normalW, input.tangentW);
 
 	diffuseAlbedo *= bumpedNormalW;
 
 	float3 toEyeW = normalize(gvCameraPosition - input.position);
 	float4 ambient = gcGlobalAmbientLight * diffuseAlbedo;
 
-	const float shininess = (1.0f - m_fRoughness) * normalMapSample.a;
-	Material mat = { diffuseAlbedo, m_vFresnelR0, shininess };
+	const float shininess = (1.0f - roughness) * normalMapSample.a; 
+	Material mat = { diffuseAlbedo, fresnelR0, shininess };
 	float3 shaowFactor = 1.0f;
-	float4 directionLight = ComputeLighiting(gLights, mat, input.positionW, bumpedNormalW, toEyeW, shadowFactor);
+	float4 directLight = ComputeLighiting(gLights, mat, input.positionW, bumpedNormalW, toEyeW, shadowFactor);
 	
 	float4 litColor = ambient + directionLight;
 
 	float3 r = reflect(-toEyeW, bumpedNormalW);
-	float4 reflectionColor = gTexture.Sample(gNormalState, input.uv);
+	//float4 reflectionColor = 
 	float3 fresnelFactor = SchlickFresnel(fresnelR0, bumpedNormalW, r);
 	litColor.rgb += shininess * fresnelFactor * reflectionColor.rgb;
 
-	litColor.a = diffuseAlbedo.a;
+	litColot.a = diffuseAlbedo.a;
 
 	return litColor;
 }

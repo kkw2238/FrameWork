@@ -167,7 +167,7 @@ CGameObject::~CGameObject()
 		}
 		delete[] m_ppMeshes;
 	}
-	if (m_pMaterial) m_pMaterial.reset();
+	if (m_pMaterial) m_pMaterial->Release();
 }
 
 void CGameObject::SetMesh(int nIndex, CMesh *pMesh)
@@ -192,8 +192,9 @@ void CGameObject::SetShader(CShader *pShader)
 
 void CGameObject::SetMaterial(CMaterial *pMaterial)
 {
-	if (m_pMaterial) m_pMaterial.reset();
-	m_pMaterial = std::make_shared<CMaterial>(*pMaterial);
+	if (m_pMaterial) m_pMaterial->Release();
+	m_pMaterial = pMaterial;
+	if (m_pMaterial) m_pMaterial->AddRef();
 }
 
 void CGameObject::CreateShaderVariables(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dCommandList)

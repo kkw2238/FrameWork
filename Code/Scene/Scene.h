@@ -6,9 +6,6 @@
 
 #include "Shader.h"
 #include "Player.h"
-#include "Room.h"
-
-const int					MAX_ROOM = 16;
 
 struct LIGHT
 {
@@ -41,22 +38,9 @@ struct MATERIAL
 	XMFLOAT4				m_xmf4Emissive;
 };
 
-struct CB_MATERIAL_INFO
-{
-	XMFLOAT4	m_xmf4DiffuseAlbedo = { 1.0f, 1.0f, 1.0f, 1.0f };	// 모든 색상이 1.0 = 본래 텍스쳐 색상을 띄워주겠다.
-	XMFLOAT3	m_xmf3FresnelR0 = { 0.001f, 0.001f, 0.001f };		// 굴절률 프레넬 효과 ( 392p )
-	float		m_fRoughness = 0.25f;								// 표면 거칠기
-	XMFLOAT4X4	m_xmf4x4MatTransform = Matrix4x4::Identity();		// 재질 변환 행렬
-};
-
 struct MATERIALS
 {
 	MATERIAL				m_pReflections[MAX_MATERIALS];
-};
-
-struct CB_MATERIALS
-{
-	CB_MATERIAL_INFO		m_pReflections[MAX_MATERIALS];
 };
 
 class CScene
@@ -157,12 +141,16 @@ public:
 protected:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	int							m_nShaders = 0;
 	DefaultRoom					m_pRooms[16];
 =======
 	int							m_nShaders = 0;
 >>>>>>> parent of 012d977... 2017.01.06 BackUp
+=======
+	int							m_nShaders = 0;
+>>>>>>> parent of fea3639... 2018.02.07 Backup
 
 	LIGHTS						*m_pLights = NULL;
 

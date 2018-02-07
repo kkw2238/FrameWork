@@ -25,7 +25,7 @@ class CShader;
 struct CB_GAMEOBJECT_INFO
 {
 	XMFLOAT4X4						m_xmf4x4World;
-	XMFLOAT4X4						m_xmf4x4TexTransform = Matrix4x4::Identity();
+	XMFLOAT4X4						m_xmf4x4TexTransform;
 	UINT							m_nMaterial;
 };
 
@@ -90,19 +90,6 @@ public:
 	void ReleaseUploadBuffers();
 };
 
-struct Material
-{
-	std::string m_sName;
-	int m_nMatCBIndex = -1;
-	int m_nDiffuseSrvHeapIndex = -1;
-
-	XMFLOAT4	m_xmf4DiffuseAlbedo		= { 1.0f, 1.0f, 1.0f, 1.0f }; // 모든 색상이 1.0 = 본래 텍스쳐 색상을 띄워주겠다.
-	XMFLOAT3	m_xmf3FresnelR0			= { 0.001f, 0.001f, 0.001f }; // 굴절률 프레넬 효과 ( 392p )
-	float		m_fRoughness			= 0.25f;					  // 표면 거칠기
-	XMFLOAT4X4	m_xmf4x4MatTransform	= Matrix4x4::Identity();      // 재질 변환 행렬
-
-};
-
 class CMaterial
 {
 public:
@@ -110,13 +97,12 @@ public:
 	virtual ~CMaterial();
 
 private:
-	std::string						m_sMaterialName;	// 고유한 재질 이름
-	int								m_nMatCBIndex = -1;		// 셰이더 코드에서의 인덱스
-	int								m_nDiffuseSrvHeapIndex = -1;
 	int								m_nReferences = 0;
 
-
 public:
+	void AddRef() { m_nReferences++; }
+	void Release() { if (--m_nReferences <= 0) delete this; }
+
 	XMFLOAT4						m_xmf4Albedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	UINT							m_nReflection = 0;
@@ -149,7 +135,7 @@ public:
 	CMesh							**m_ppMeshes;
 	int								m_nMeshes;
 
-	std::shared_ptr<CMaterial>		m_pMaterial = NULL;
+	CMaterial						*m_pMaterial = NULL;
 
 	D3D12_GPU_DESCRIPTOR_HANDLE		m_d3dCbvGPUDescriptorHandle;
 
