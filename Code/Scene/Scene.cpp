@@ -369,7 +369,11 @@ void GameScene::BuildLightsAndMaterials()
 	m_pLights = new LIGHTS;
 	::ZeroMemory(m_pLights, sizeof(LIGHTS));
 
+<<<<<<< HEAD
 	m_pLights->m_xmf4GlobalAmbient = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
+=======
+	m_pLights->m_xmf4GlobalAmbient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 
 	m_pLights->m_pLights[0].m_bEnable = true;
 	m_pLights->m_pLights[0].m_nType = POINT_LIGHT;
@@ -417,6 +421,7 @@ void GameScene::BuildLightsAndMaterials()
 	m_pMaterials = new MATERIALS;
 	::ZeroMemory(m_pMaterials, sizeof(MATERIALS));
 
+<<<<<<< HEAD
 	m_pMaterials->m_pReflections[0] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[1] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 10.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[2] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 15.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
@@ -425,6 +430,16 @@ void GameScene::BuildLightsAndMaterials()
 	m_pMaterials->m_pReflections[5] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 30.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[6] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 35.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
 	m_pMaterials->m_pReflections[7] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 40.0f), XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) };
+=======
+	m_pMaterials->m_pReflections[0] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f),  XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[1] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 10.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[2] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 15.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[3] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 20.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[4] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 25.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[5] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 30.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[6] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 35.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+	m_pMaterials->m_pReflections[7] = { XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 40.0f), XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) };
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 bool GameScene::OnProcessingMouseMessage(HWND hWnd, UINT nMessageID, WPARAM wParam, LPARAM lParam)
@@ -538,8 +553,13 @@ void GameScene::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandLis
 	m_nShaders = 3;
 	m_ppShaders = new CShader*[m_nShaders];
 
+<<<<<<< HEAD
 	CNormalObjectShader *pObjectShader = new CNormalObjectShader();
 	pObjectShader->CreateShader(pd3dDevice, pObjectShader->GetGraphicsRootSignature(), 2);
+=======
+	CObjectsShader *pObjectShader = new CObjectsShader();
+	pObjectShader->CreateShader(pd3dDevice, m_ppd3dGraphicsRootSignature[0], 2);
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 	pObjectShader->BuildObjects(pd3dDevice, pd3dCommandList, NULL);
 	m_ppShaders[0] = pObjectShader;
 	
@@ -571,19 +591,29 @@ void GameScene::ReleaseObjects()
 	if (m_ppd3dGraphicsRootSignature)
 	{
 		for (int i = 0; i < m_nRootSignature; ++i)
+<<<<<<< HEAD
 			if(m_ppd3dGraphicsRootSignature[i])
 				m_ppd3dGraphicsRootSignature[i]->Release();
+=======
+			m_ppd3dGraphicsRootSignature[i]->Release();
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 	}
 
 	if (m_ppShaders)
 	{
 		for (int i = 0; i < m_nShaders; i++)
 		{
+<<<<<<< HEAD
 			if (m_ppShaders[i]) {
 				m_ppShaders[i]->ReleaseShaderVariables();
 				m_ppShaders[i]->ReleaseObjects();
 				m_ppShaders[i]->Release();
 			}
+=======
+			m_ppShaders[i]->ReleaseShaderVariables();
+			m_ppShaders[i]->ReleaseObjects();
+			m_ppShaders[i]->Release();
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 		}
 		delete[] m_ppShaders;
 	}
@@ -633,6 +663,11 @@ void GameScene::Render(ID3D12GraphicsCommandList * pd3dCommandList, CCamera * pC
 
 void GameScene::ReleaseUploadBuffers()
 {
+<<<<<<< HEAD
+=======
+	for (int i = 0; i < m_nShaders; i++) 
+		m_ppShaders[i]->ReleaseUploadBuffers();
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 void GameScene::UpdateShaderVariables(ID3D12GraphicsCommandList * pd3dCommandList)

@@ -625,6 +625,10 @@ void CGameFramework::FrameAdvance()
 
 	ID3D12CommandList *ppd3dCommandLists[] = { m_pd3dCommandList.Get() };
 
+	hResult = m_pd3dCommandList->Close();
+	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
+	WaitForGpuComplete();
+
 	//D3D12_CPU_DESCRIPTOR_HANDLE pd3dRtvRenderTargetBufferCPUHandles[m_nRenderTargetBuffers] = { NULL, NULL };
 
 
@@ -650,11 +654,19 @@ void CGameFramework::FrameAdvance()
 #endif
 		m_pPlayer->Render(m_pd3dCommandList.Get(), m_pCamera );
 	
+		hResult = m_pd3dCommandList->Close();
+		m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
+		WaitForGpuComplete();
 	}
 
+<<<<<<< HEAD
 	hResult = m_pd3dCommandList->Close();
 	m_pd3dCommandQueue->ExecuteCommandLists(1, ppd3dCommandLists);
 	WaitForGpuComplete();
+=======
+
+	
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 
 #ifdef _WITH_PRESENT_PARAMETERS
 	DXGI_PRESENT_PARAMETERS dxgiPresentParameters;

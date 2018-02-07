@@ -95,6 +95,11 @@ public:
 
 	bool GetLive() const { return m_bLive; }
 
+<<<<<<< HEAD
+=======
+	int GetNowRoomNumber() const { return m_nRoomNumber; }
+
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 protected:
 	ID3D12Resource					*m_pd3dcbPlayer = NULL;
 	CB_PLAYER_INFO					*m_pcbMappedPlayer = NULL;

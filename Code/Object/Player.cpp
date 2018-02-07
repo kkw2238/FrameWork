@@ -25,6 +25,11 @@ CPlayer::CPlayer(ID3D12Device *pd3dDevice, ID3D12GraphicsCommandList *pd3dComman
 	m_fPitch = 0.0f;
 	m_fRoll = 0.0f;
 	m_fYaw = 0.0f;
+<<<<<<< HEAD
+=======
+
+	m_nRoomNumber = 18;
+>>>>>>> parent of 012d977... 2017.01.06 BackUp
 }
 
 CPlayer::~CPlayer()

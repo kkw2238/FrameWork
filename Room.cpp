@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Room.h"
 
+
 DefaultRoom::DefaultRoom()
 {
 }
@@ -88,7 +89,7 @@ ID3D12RootSignature * DefaultRoom::CreateGraphicsRootSignature(ID3D12Device * pd
 	return(pd3dGraphicsRootSignature);
 }
 
-void DefaultRoom::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, CPlayer* pPlayer)
+void DefaultRoom::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, CMyPlayer* pPlayer)
 {
 	m_nRootSignature = 1;
 	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature*[m_nRootSignature];
@@ -389,7 +390,7 @@ ID3D12RootSignature * IceRoadRoom::CreateGraphicsRootSignature(ID3D12Device * pd
 	return(pd3dGraphicsRootSignature);
 }
 
-void IceRoadRoom::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, CPlayer* pPlayer)
+void IceRoadRoom::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, CMyPlayer* pPlayer)
 {
 	m_nRootSignature = 1;
 	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature*[m_nRootSignature];
@@ -596,7 +597,7 @@ ID3D12RootSignature * SmogCliffRoom::CreateGraphicsRootSignature(ID3D12Device * 
 	return(pd3dGraphicsRootSignature);
 }
 
-void SmogCliffRoom::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, CPlayer* pPlayer)
+void SmogCliffRoom::BuildObjects(ID3D12Device * pd3dDevice, ID3D12GraphicsCommandList * pd3dCommandList, CMyPlayer* pPlayer)
 {
 	m_nRootSignature = 1;
 	m_ppd3dGraphicsRootSignature = new ID3D12RootSignature*[m_nRootSignature];
